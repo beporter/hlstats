@@ -1,0 +1,5 @@
+How to update an existing installation can be found here:
+
+http://www.hlstats-community.org/Documentation/Update.html
+
+There are also special update instructions for some versions. Make sure you read them too !

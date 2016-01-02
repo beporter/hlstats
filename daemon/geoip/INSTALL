@@ -1,0 +1,15 @@
+To install, run:
+
+# fetch latest GeoIP database, updated monthly
+wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
+gunzip GeoIP.dat.gz
+mv GeoIP.dat /path/to/hlstats/daemon/geoip/GeoIP.dat
+
+# windows
+download from 
+http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
+and unzip with WinZIP or WinRAR and move it to:
+/path/to/hlstats/daemon/geoip/GeoIP.dat
+
+Activate the USEGEOIP option in Admin section.
+Restart hlstats.pl daemon

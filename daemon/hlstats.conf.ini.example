@@ -1,0 +1,62 @@
+# This file is used by hlstats.pl, hlstats-awards.pl.
+# Note that many options can be overridden on the command line; try running with
+# the --help switch for details of available command line options.
+
+##
+## Database Settings
+##
+[Database]
+# Database server "address" or "address:port". Address can be an IP or a hostname.
+DBHost = localhost
+
+# Name of the database to use.
+DBName = hlstats
+
+# User to connect to the database as.
+DBUsername = user
+
+# Password for the database user.
+DBPassword = test
+
+# Table prefix. Default is hlstats
+DBPrefix = hlstats
+
+# Use INSERT DELAYED and DELETE LOW_PRIORITY for some queries.
+DBLowPriority = 0
+
+##
+## System settings
+##
+[System]
+# IP address to bind to (leave empty to use all interfaces)
+BindIP =
+
+# Port to listen on for log data from the game servers.
+Port = 27500
+
+# Set this to 1 to have debugging information printed on stdout
+# Set higher for even more debugging information
+# 0 means no output at all
+DebugLevel = 1
+
+# Decide if we use the log stream or STDIN
+# normally no need to change this
+Stdin = 0
+
+# set this only if you use STDIN
+ServerIP =
+
+# set this only if you use STDIN
+ServerPort = 27015
+
+# set this only if you use STDIN
+Timestamp = 0
+
+##
+## General Settings
+##
+
+[General]
+# the amount a player gets removed from its skill for
+# a teamkill
+TKPoints = 60

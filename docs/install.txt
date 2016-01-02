@@ -1,0 +1,2 @@
+The Installation Documentation can be found here:
+http://hlstats-community.org/Documentation.html

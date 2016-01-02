@@ -1,0 +1,14 @@
+Compare the new hlstats.conf.ini with the existing one and add the new
+sections
+
+Run the upgrde*.sql file
+
+Restart hlstats.pl
+
+Create an cronjob which executes the player-activity.pl once a day
+
+As you run the sql update, all the players are active. This will change after the
+first run of player-activity.pl
+
+AFTER running player-activity for the first time, players will be set to inactive
+if they have no skillchange in the setup timeframe.

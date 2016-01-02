@@ -1,0 +1,655 @@
+HLStats ChangeLog
+=================
+1.65 (2012-11-15)
+*) Fixed: Possible sql error with Players table. There was no default value.
+	Run the sql upgrade file to fix this. (thx to druxxi)
+*) Fixed: some typos and code improvements
+*) Fixed: typo in table rows and code
+
+1.64 (2012-09-12)
+*) Fixed: missing SQL statement for the PlayerAttackedPlayer table
+	Thx to kimaki
+*) New: CS:GO support ( thx to /r/Globaloffensive )
+*) Update: Fortress forever gamesupport update
+*) Fixed: Bug in role overview page
+
+1.63 (2012-07-12)
+*) New: skype field in player table. hls_set skype from ingame #16
+*) New: steam achievements are shown at the games which have steam stats
+	curl modul for php is needed
+*) New: New style sheet 'rounded'
+*) New: New style sheet 'grey'
+*) New: Player attacked Player events are now recorded.
+*) New: GoldenEye: Source gamesupport
+*) New: Left for dead 2 gamesupport
+*) New: Players timeline
+*) Update: Using PHP mysqli extension now.
+*) Update: L4D, Hidden and other gamesupport files.
+*) Update: Server add-ons list
+*) Update: some interface changes
+*) Web interface (PHP) uses the MySQLi extension now
+*) Works with Perl 5.12.4, MySQL 5.1.16
+*) Fixed: Player not tracked if NON-Steam server is used ;-)
+		Uses NOSTEAM_ in uniqueid
+*) Fixed: timestamp option was not used correctly.
+*) Fixed: deleted lastUpdate column from player table. is now replaced with
+	skillchangeDate
+*) Fixed: players count per day
+*) Fixed: Possible fix for server view. Variable was a string
+*) Fixed: Sort did not work in player chat history table
+*) Changed: L4D improvements. zombies are now handled as BOT to clear up
+	the stats
+*) Closed: #14
+*) Closed: #15
+*) Closed: #39
+*) Close: #18
+
+1.62 (2011-05-18)
+*) New: Design styles (css) updated.
+*) New: Zombie Panic! Source had no weapon pics
+*) New: Most time online chart at player overview. Needs serverplugin
+	which provides time info ( eg. AMX Mod X statsplugin )
+*) New: Game reset by server or all
+*) New: Command line argument -q|--quiet will surpress all output
+	Useful for cron jobs
+*) Changed: New Rank section in player detail page. #37
+*) Updated: blue.css and default.css small design changes
+*) Updated: weapon and map pictures
+*) Fixed: old weapon images converted to png
+*) Fixed: #34
+*) Fixed: number format error in player detail page
+*) Fixed: #36
+*) Fixed: #4
+*) Closed: #24
+
+1.61 (2011-03-08)
+*) New: New css style blue.css
+*) New: favicon.ico now  available ;-)
+*) New: Admintool added to clear old signatures ( older then one day )
+*) New: Opposing Force CTF/DM role models added
+*) New: Admin host stats available again
+*) Changed: New Bug Tracker. Now FlySpray
+*) Changed: Mysql escape function on PHP now mysql_real_escape_string
+*) Changed: cleaner mysql query strings
+*) Changed: Opposing Force gamesupport files merged. To upgrade an existing
+		installation import the gamesupport file manually to the database
+		( thx to h3erbert )
+*) Changed: Cleaner gamesupport sql files
+*) Fixed: Ticket #28
+*) Fixed: Improved Opposing Force gamesupport ( thx to h3rbert )
+*) Fixed: Weapon mix up now in oposing force now fixed ( thx to h3rbert )
+*) Fixed: FS#33 Old Chart images were not removed.
+
+
+1.60 (2011-02-10)
+*) Note: Works with Perl v5.10.1, MySQL 5.0.51a, Apache 2.2.16
+		PHP 5.3.3-6
+*) Note: Thx to Schakal for all his help making this release ready !
+*) Note: Changed license: CDDL http://www.sun.com/cddl/cddl.html
+*) New: HLStats needs MySQL 4.1 and MySQL is the only supported DB yet.
+*) New: HLStats needs PHP > 5.2.0 now.
+*) New: New design and overall re-write of the web-interface
+*) New: Team statistics overview page (thx to goose for the idea)
+*) New: Player profile has new myspace field /hls_set myspace url
+*) New: Player profile has new facebook field /hls_set facebook url
+*) New: Player profile has new jabber field /hls_set jabber url
+*) New: Player profile has new steamprofile field /hls_set steamprofile
+		url
+*) New: Steam profile page lookup via SteamID. BCmath support (PHP) is
+		needed.
+		http://www.php.net/manual/en/book.bc.php
+*) New: Clan Profile can new enter a steam group URL
+*) New: Daemon can now lookup country. Using Maxmind GeoIP.
+		Please read the documentation on how to use this feature !!
+		flags provided by famfamfam
+*) New: Players table gets a date on updates. This can be used to show
+		Players from current day etc.
+*) New: If no connect is recorded the "Last Connect" information is
+		taken from the last event a player has made.
+*) New: If BOTs are recored (IGNOREBOTS option) then the player overview
+		has a new option to show those too. Otherwise only non-bots are
+		shown.
+*) New: Daily awards have a history. The data will be kept as log as
+		DELETEDAYS is defined.
+*) New: hlstats-screen.sh script to start HLStats within the screen
+		command. thx to Schakal
+*) New: New signature background image: css_nitro
+		Copyright by Nitrocium @ deviantart
+*) New: The information if a player is a bot or not is now stored in the
+		_Players table. This avoids the additional scan via uniqueIds.
+		If we include Bots we now can show if a player is a bot or not
+		with the bot picture (bot.png)
+		If we ignore bots, the bot should be ignored now in the most cases.
+*) New: Points for a teamkill can now be configured on hlstats.conf.ini
+		value = TKPoints Default is 60 points
+*) Update: TFC images
+*) Update: TFC gamesupport
+*) Update: TF2 gamesupport
+*) Update: L4D gamesupport
+*) Update: Big game picture at right side, which shows the current selected game
+*) Update: New server addons and updated the current ones.
+*) Changed: pid file name changed ( thx to schakal )
+*) Changed: Options moved from conf files into DB, but information
+			about DB access is still in those files. Needed to make sure
+			the daemon and webinterface can still be apart.
+			IMPORTANT: READ THE UPGRADE INFORMATION ABOUT THIS !!
+*) Changed: ELO Ratingsystem removed. It was never used..... :(
+*) Changed: Only one admin user is now possible. Dropped admin rights
+			for now.
+*) Changed: Design options removed from options table
+*) Changed: imgpath and imgdir option removed
+*) Changed: Host statistics in admin disabled. New version will include
+			this again.
+*) Changed: Constant INCLUDE_PATH removed.
+*) Changed: hlstats.php file renamed to index.php
+				scripturl option has been removed.
+*) Changed: sorting pictures renamed
+*) Changed: replaced AMCharts with pChart
+*) Changed: Information about real kills removed
+*) Changed: hls_set options cleanup
+*) Changed: hlstats.conf.ini DNSResolveIP and DNSTimeout removed.
+			Replaced by UseGEOIP
+*) Changed: Dropped hlstats_Server defaultMap.
+			While loading servers from DB we get the current map via
+			ServerQueries. This should avoid "unknown" maps
+*) Changed: Dropped MailTo and MailPath setting for daemon.
+*) Changed: Filters at players overview are applied to chart, too.
+*) Changed: RCON password not saved in events anymore. Display in logs
+			if DEBUG > 1
+*) Fixed: typo in lang (thx to LuBJe)
+*) Fixed: bug in admin -> Tools -> Reset (thx to conan)
+*) Fixed: remove the ; in rcon commands (thx to Par0noid)
+*) Fixed: Issue #23
+*) Fixed: Issue #26
+*) Fixed: Issue #32
+*) Fixed: Issue #31
+*) Fixed: Issue #40
+*) Fixed: Issue #42
+*) Fixed: Issue #43
+*) Fixed: Issue #51
+*) Fixed: Issue #63
+*) Fixed: Edit player details. Hiding a player was not saved
+*) Fixed: Issue #62
+*) Fixed: Parse error in player-activity.pl script....
+
+1.51 (2009-11-23)
+*) New: HLStats can now be translated via ini files. The default language
+		is set in the hlstats.conf.php file. Update the configuration !
+		Help and some graphics are still missing
+*) New: Visitors can now change the language of the web content via cookies
+*) New: Player are now separated into "active" and "inactive" Players
+		The players which have now activity (skill change) in a given timeframe
+		are set to inactive and will not be show in players overview.
+*) New: Role pictures in player info page if available.
+*) Updated: Display of the awards and more stuff (thx to freaker and someone)
+*) Updated: Ignore BOT option ignores everything which has BOT as unique ID
+*) Updated: Dod Role and map pictures.
+*) Updated: TF2 Weapon pics
+*) Changed: Period for event deletion in hlstats.pl increased.
+*) Changed: import-tools.sh removed (can be found in the docs now)
+*) Changed: HLstats is now HLStats
+*) Changed: Moved functions from hlstats.pl to HLstats.plib
+*) Changed: hlstats.conf is now hlstats.conf.ini and uses the ini format.
+	http://search.cpan.org/~adamk/Config-Tiny/
+	The perl module Config::Tiny is now required for running HLStats daemon
+*) Changed: removed some options which where never user or are useless anymore
+	-n, --nodebug, $g_nodebug
+*) Changed: removed the option g_patch_loopback_ip and implemented it into
+	hlstats.pl
+*) Changed: removed the old db object and replaced it with basic mysql functions
+	from php.
+*) Changed: renamed the hlstats.conf.inc.php file to hlstats.conf.php
+*) Fixed: Special chars problem in players overview page (thx to freaker)
+*) Fixed: Missing check in doEvent_Chat function (thx to VladiBG)
+*) Fixed: rcon messages. Missing quotes (thx to freaker)
+*) Fixed: Missing game information if only one game is installed
+		(thx freaker) (#22)
+*) Fixed: News Box to small (#25)
+*) Fixed: Special chars error in temporary tables (#21)
+*) Fixed: Admin Events view, filter was not working (#12)
+
+1.50 (2009-06-18)
+*) New: EloRating system. Can be activated and used sperate it along with the existing (thx to HampusW)
+*) New: EloRatung system: Level of verbose output can now be configured in hlstats conf
+*) New: Beta gamesupport for L4D
+*) New: Beta support for Zombie Panic
+*) New: IngamePoints option in hlstats.conf allows to de/active the skill report at kill/frag (thx to  Schlesie)
+*) New: At server configuration you can enter the default map. This map is used
+		if HLStats is unable to determine the map.
+*) New: /skill and /pskill now reports the KpD too. (Feature request: 2556961 )
+*) New: sm_psay for a private say command with sourceMod (thx to unkraut)
+*) New: a not to the installer, to activate cookies
+*) New: more map pics
+*) New: rcon say improvements and fixes in the rcon in EloRatingSystem
+*) Fixed: there were still some php short tags in some scripts (thx to psychonic and enemy)
+*) Fixed: Missing semicolon on hlstats-resolv.pl (thx to  freaker)
+*) Fixed: Missing & at the hlstats.sh script (thx to Shakal)
+*) Fixed: Possible error in query (sig.php) and include path(xml.php) (thx to Andre86)
+*) Fixed: Error for connects flash as no player data was in events table
+*) Fixed: tf2 gamesupport file
+*) Fixed: Error at player info page
+*) Changed: Improvements to the flash charts
+*) Changed: SQl Improvements to the database and queries which speeds at large amount of data
+*) Changed: hlstats.pl prints only info with -d
+*) Changed: hls_skill and hls_pskill are now skill and pskill
+*) Changed: Improved support for utf-8
+*) Changed: Improved base sql file. WARNING it will only work with mysql 4.1.x and newer
+*) Changed: DB Error shows only error and no user information
+*) Changed: Simplified the db class, since we only support mysql
+*) Changed: cleaned code base and now using PHP 5
+*) Changed: Improved Insurgency game support
+
+1.40 (11-11-2008)
+*) Fixed: Edit Clan details, no id given ( ticket:  2166174)
+*) Fixed: Rcon shown up in live stats ( ticket: 2166174 and 2180315)
+*) Fixed: TF2 SQl cleanup ( ticket: 2190031 )
+*) Fixed: Ingame messages printed too many information ( ticket: 2222115 )
+*) Fixed: Possible bug ( ticket: 2224659 )
+*) Changed: Player Chat history on a separate page ( ticket: 2249905 )
+*) Changed: Live stats works again but only with limited features ( ticket: 2182620,2190025,2206898)
+*) Updated: Some new weapon pics
+	1.40beta2 (2008-10-31)
+*) Changed: Reduced Live stats information since valve steam update
+*) Changed: Improved support files (thx psychonic)
+*) Changed: Speedup for live stats (thx SLAiNTRAX)
+*) Fixed: bugs since 1.40beta
+*) Added: beta gamesupport for Insurgency (thx psychonic)
+	1.40beta (2008-10-08)
+*) New: Gamesupport for Half Life 2 CTF
+*) New: Flash charts provided by amcharts
+*) New: Reset statistics for specific player
+*) New: Player online statistics per day (flash) (default is deactivated)
+*) New: Player kills per day (flash) (default is deactivated)
+*) New: Most time online statistics (flash) (default is deactivated)
+*) New: Say /hls_skill is now included
+*) New: historical awards in the Delete Days period (Feature Request: 1872588)
+*) New: xml interface for retrieving some information (default is deactivated)
+*) New: Signature gererator (sig.php) ( See documentation for more details )
+*) New: Players view can be now separated by server (Feature Request: 451340)
+*) New: Possibility to log all say messages. Option LogChat in hlstats.conf (default 0) (Feature Request: 2073578,2224660)
+*) New: skill messages can be also returned as private messages /hls_psay (Feature Request: 2073578)
+*) Changed: DeleteDays can be 0 now. Which means data will be kept forever
+*) Changed: include of plib files is no done via require
+*) Updated: TF2 weapon pics
+*) Updated: TFC actions
+*) Fixed: Show people this person has killed Dropdown (Bug: 1941280)
+*) Fixed: Advanced server view was not saving the data (Bug: 1966096)
+*) Fixed: Possible bug in live_stats view for a server
+*) Fixed: (possible) Fix for "mysql has gone away" bug
+*) Fixed: Day of Defeat:Source install sql file bug (invalid sql)
+*) Fixed: Typo in hlstats-awards.pl (Bug: 2055233)
+*) Fixed: PNG transparent for IE
+
+
+1.38 (2008-08-04)
+*) New: table prefix.
+		The installer can configure your table prefix. (default is hlstats_)
+		If you don't want to use the installer read the docs first ( Feature request: 1901188)
+*) Changed: The installer saves the daemon conf (hlstats.conf) now into the
+            installer folder, since the daemon can be seperate from the hlstats.php
+*) Changed: The /set commands are now /hls_set and /hls_hideranking
+*) Updated: Improved TF2 gamesupport file
+*) Updated: Improved help page
+*) Updated: Installation and other documentation files
+*) Fixed: TF2 team codes were wrong. (Bug: 1962361)
+*) Fixed: Advanced server view was not saving the data (Bug: 1966096)
+
+
+1.37 (2008-06-11)
+*) Bugfix release
+*) Fix: Weapon row in SQL table was too small for some weapon names
+*) Fix: Missing awards for tf2
+*) Fix: Adding news resulted in a MySQL error (Windows)
+
+
+1.36 (released 2008-04-29)
+*) New: Adding and removing a game via Web-Interface
+*) New: New weapon pics and new game Icons and more
+*) New: Admin has now a logout function
+*) New: Team Fortress 2 support
+*) New: Web installer
+*) New: adding games via web interface
+*) Changed: Fixed layout bugs
+*) Changed: Login settings, should be saver now
+*) Changed: Constant PLATFORM was never used
+*) A lot stuff I can't even remember..
+
+
+1.35a beta (released 2008-01-22) (beta release !)
+(see more Details at https://sourceforge.net/projects/hlstats/ )
+*) First release from hlstats-community.org team
+*) Fix: Bug 1831896
+*) Fix: Bug 1676870
+*) Fix: Bug 1548966
+*) Fix: Bug 1455683
+*) Fix: Bug 1008758
+*) Fix: Player rank in playerinfo page were the kills instead the rank
+*) Fix: weapons row in hlstats_Events_Frags was too short
+   Weapon Names were shortened and not correctly stored.
+*) New: Patch 1822124
+*) New: Patch 1822072
+*) New: Patch 1376418
+*) New: News plugin working correctly
+*) New: Small arrows indicate the process of skill change (Feature request: 419869)
+*) New: The stats can be reseted by game
+*) New: Show last reset Date (at the gobal reset function) (Feature request: 441345)
+*) New: Delete a Player from a Clan (Feature reuqest: 423813)
+*) New: Adding gamesupport files via the web-interface
+*) Update: hideranking option not only at players page. (Reature request: 471156)
+*) Update: Various Weapon Images and Maps
+*) Changed: Configuration has been moved from hlstats.php
+   to hltstatsinc/hlstats.conf.inc.php
+*) Changed: all include file have now .php at the end
+
+
+1.35 (released 2007-02-06)
+*) Fix: XSS vulnerability in search class. (Thanks Tobi)
+*) Fix: Tighter sanitation of GET/POST vars. (Thanks Tobi)
+*) Fix: LiveStats split packet bug.
+*) New: Option to hide daily awards.
+*) Changed: Updated links for server plugins.
+*) Changed: Added more server plugins.
+
+1.34 (released 2006-01-25)
+*) New: Gamesupport for Vampire Slayer
+*) Fix: NumPlayers/Auto-Disconnecting bug. (thanks timeout)
+*) Fix: Livestats search error.
+*) Fix: Windows DNS Resolving finally works.
+*) Fix: Claninfo page now displays a nice error if a clan has 0 members.
+*) Changed: HLTV no longer recorded as a player.
+*) Changed: Server cvars are now recognized if they are empty.
+*) Changed: Better Rcon command recognition.
+*) Changed: Unresolved IP Addresses are now grouped together.
+*) Changed: Better UTF-8 support.
+
+
+1.33 (released 2005-11-04)
+*) Fix: Livestats Parse Errors
+*) Fix: Teams joined query fix (Thanks Tobi)
+*) Fix: New query format (livestats)
+*) New: Gamesupport file for DoD:Source
+*) New: Map and Weapon Images for DoD:Source (Thanks jonass)
+*) New: Included *NIX HLstats Startup script
+*) New: Included *NIX Log Import script
+*) Changed: Most Windows line breaks to UNIX linebreaks
+*) Changed: Livestats now searches for name, not id. (prevents NameTrack
+   searches returning every player)
+
+
+1.32 (released 2005-03-18)
+*) Fix: No longer decrement players with STEAM_ID_PENDING (num-players bug,
+   thanks TechMan)
+*) Fix: Rcon mode never being used for live stats
+*) Fix: Live stats chops off first character of IP
+*) Fix: Various formatting issues
+*) Fix: Counting Console as a player
+*) Fix: Team killing in Deathmatch (everyone on 'Unassigned' team)
+*) New: Images for everything
+*) New: KKrcon update for Source engine servers (thanks TechMan/Tobi17)
+*) New: Support for Valve's new query format
+*) New: Game support file for HL2MP (Team/Deathmatch - Now with weapons!)
+*) Changed: Updated Counter-Strike: Source support (missing smokegrenade weapon
+   log)
+*) Changed: Updated Ricochet Support (added weapons)
+*) Changed: Updated gamesupport for source KKrcon
+*) Changed: Live stats for protocol 7
+*) Changed: References to gamedir in live stats to game
+*) Changed: Better UTF-8 support php-side (thanks Tobi17)
+*) Changed: Removed SQL Query from Admin class, php saves us the MD5 query
+
+
+1.31 (released 2004-11-27)
+*) Fix: Removed bad session code
+*) Fix: allow_call_time_pass_reference in 'hlstatsinc\hlquery_funcs.inc'
+*) Fix: function returning false instead of empty in
+   'hlstatsinc\hlquery_funcs.inc'
+*) Fix: Removed unwanted debug code left from pre 1.30
+*) Fix: Infinite loop in 'hlstatsinc\hlquery_funcs.inc'
+*) New: Counter-Strike: Source rcon support for Live Stats
+*) New: Game support file for Condtion Zero
+*) New: Game support file for Counter-Strike: Source
+*) New: Game support file for Gearbox (CTF & DM)
+*) New: Game support file for Ricochet
+
+
+1.30 (released 2004-10-14)
+*) Fix: Time left worked incorrectly with AMX/CM
+*) Fix: Include paths missed out of live stats
+*) Fix: Player count with bots on server
+*) Fix: Corrupt DMC images
+*) New: MySQL 4.0 support added
+*) Changed: If no public address port, live stats uses private address port
+*) Changed: General optimizations/tweaks to live stats
+*) Changed: User password encryption to MD5
+
+
+1.30-beta (released 2004-08-10)
+*) Fix: Multi-Mod Bug
+*) Fix: Colors with NS Weapon Images.
+*) Fix: Image Demensions on 'hlstatsimg\maps\valve\gasworks.jpg'
+*) Fix: Restricted Access Level Bug in Clan Tag Patterns
+*) Fix: problem related to browsers using '&' in the address
+*) New: Server Status Page
+*) New: Color Themes
+*) New: Support for DOD 1.1
+*) New: Support for NS 3.0
+*) New: Game Icons
+*) New: Admin panel uses sessions
+*) Changed: Increased Performance with 'hlstatsinc\game.inc'
+*) And more... :)
+
+
+1.20 (released 2003-10-07)
+*) Fix: Bug in new register_globals code.
+*) Fix: [No C-D], [OLD C-D], [NOCL] clan tag removal from players names.
+*) Fix: (1) & (2) tag removal from players names.
+*) Fix: NOPLAYERINFO after idling to long
+*) Fix: LAN mode get() from crashing
+*) Fix: MOD logos not being displayed when tracking multiple mods
+*) New: Full support for Natural Selection 2.01.
+*) New: Full support for Day of Defeat 1.0.
+*) New: Full support for Team Fortress Classic 1.5.
+*) New: Definable Roles.
+*) New: Ability to hide selected Teams & Roles.
+*) New: Kill Ratio Add-on.
+*) New: Action Statistics page.
+*) New: Added "triggered a" event
+*) Changed: Weapon Image column color now definable.
+*) Changed: All weapon images are now transparent.
+*) Changed: Variable award periods.
+*) Changed: Changed htmlspecialchars() to htmlentities()
+
+
+1.10 (released 2003-08-01)
+*) Fix: corrected sorting of clans by skill.
+*) Fix: remove default points for Begin_Bomb_Defuse_Without_Kit &
+   Begin_Bomb_Defuse_With_Kit (CS).
+*) Fix: added body_background to admin page.
+*) Fix: LAN mode NOPLAYERINFO errors.
+*) New: full support for bots.
+*) New: Steam and Valve ID support.
+*) New: allow HLstats to work with register_globals Off.
+*) New: replace php short tag <? with <?php.
+*) New: improved HTML 4.01 Transitional.
+*) New: auto-optimizations of tables.
+*) New: added support for DOD and NS.
+*) New: updated map and weapon images for the following mods : HL, TFC, CS, DOD,
+   and NS.
+*) New: StatsMe support.
+*) New: Strip (1), (2), [NOCL], [NO-CD] and [OLD C-D] from player names.
+*) New: extended default clan tags.
+
+
+1.02 (released 2001-12-28)
+*) Official release. No changes from 1.02-beta2.
+
+
+1.02-beta2 (released 2001-12-02)
+*) Fix: really fix the timelocal() December bug. (S. Garner)
+
+
+1.02-beta1 (released 2001-12-02)
+*) Fix: gluongun.gif / tau_cannon.gif were mixed up. (S. Garner)
+*) Fix: "gluongun" should be "gluon gun". (S. Garner)
+*) Fix: month value for timelocal() should be 0..11 not 1..12, this prevented
+   hlstats.pl from working correctly in December! (S. Garner)
+*) Fix: suicide and teamkill skill penalties were being erroneously changed into
+   +1 skill bonuses. (S. Garner, with thanks to Surtr <surtr@waygate.net>)
+*) Fix: playerinfo reported Aliases as expiring after DELETE_DAYS. (S. Garner)
+*) Fix: duplicate '357' weapon in gamesupport_valve. (S. Garner)
+*) New: RconRecord configuration option, set to 0 to disable recording logged
+   rcon commands to the Events_Admin table (useful for PB servers). (S. Garner)
+*) Fix: PlayerAction and PlayerPlayerAction player skill rewards did not work
+   (only team rewards). (S. Garner)
+*) Fix: escape HTML in player names when displaying awards. (S. Garner)
+*) Fix: NameTrack mode should work better. (S. Garner)
+*) Fix: decrement our count of the number of players on the server when a player
+   disconnects. Also only increment the count if the player object doesn't exist
+   already (in case of multiple connections without disconnect). The MinPlayers
+   configuration setting should work now! (S. Garner)
+*) New: Added SkillMaxChange configuration option to fix 'insanely high skill'
+   problem. (S. Garner, with thanks to buddha <buddha@buddhapest.com>)
+*) Fix: duplicate closing table tags in game.inc. (S. Garner)
+*) Fix: Add note about MySQL username@localhost to INSTALL docs. (S. Garner)
+
+
+1.01 (released 2001-04-10)
+*) Merge KKrcon 2.11. (S. Garner)
+*) Fix: <input maxlength="0"> bug in admin.inc. (S. Garner)
+*) Increased size of all player name columns again, now varchar(64). (S. Garner)
+*) Fix: P228/Glock18 cstrike weapon images swapped. (S. Garner)
+*) Fix: stop "must specify player's uniqueid" error when WONID=0. (S. Garner)
+*) Added TFC team 4 ('Green') and #Hunted_team1/2/3. (S. Garner)
+*) Added checks to tools_editdetails_player and tools_editdetails_clan to make
+   sure that a player or clan exists with the specified ID. (S. Garner)
+*) Fixed bug in hlstats-resolve.pl where no hosts would be resolved. (S. Garner)
+*) Changed hlstats-awards.pl to only generate awards for games where hidden='0',
+   and to generate awards in game, type order. (S. Garner)
+*) Added --nodebug (-n) option to hlstats.pl and hlstats-resolve.pl. For each
+   occurence, the debug level is reduced by 1. This is useful if hlstats.conf
+   specifies e.g DebugLevel 1 and you want to run hlstats-resolve.pl with a
+   DebugLevel of 0 -- just add -n to the command line. (S. Garner)
+*) Split game-specific data out of hlstats.sql into separate gamesupport_*.sql
+   files. (S. Garner)
+*) Added UPGRADE.html. (S. Garner)
+*) When editing or creating a server, the IP Address will be checked to make
+   sure it is a correctly formatted dotted-decimal IP address (i.e. not a
+   hostname). (S. Garner)
+*) Rearrange admin settings into Game-specific groups for easier management of
+   data. (S. Garner)
+*) Add unique key (game, awardType, code) to Awards table. (S. Garner)
+*) Added new define("PLATFORM"), allowing for a MySQL Windows bug workaround in
+   tools_reset. (S. Garner)
+*) Fixed bug in uniqueid tracking when gameserver is restarted. May help both
+   Normal and NameTrack modes. (S. Garner)
+*) Admin usernames and passwords are now correctly limited to 16 characters.
+   To achieve this, EditList class now supports setting a maxlength for text
+   fields; fields throughout the admin now have maxlengths to match their
+   column sizes in the database. (S. Garner)
+*) Added Public Address and Rcon Password options to Servers, and put Public
+   Address and Status URL into "Advanced View". Fixed game.inc to show the
+   Public Address if specified. Public Address can be used when any kind of
+   log relaying program is being used and the IP and Port are not the real
+   address of the game server. (S. Garner)
+*) Added upgrade sql file. (S. Garner)
+*) Increased size of tag column in hlstats_Clans to varchar(32). (S. Garner)
+*) quoteSQL() now escapes \ as \\, too. (S. Garner)
+*) Integrated player profile management stuff from HLstats-HLLOG into hllog.pl.
+   HLstats-HLLOG will no longer be distributed. (S. Garner)
+*) Die if no Events tables found with SHOW TABLES in tools_reset. (S. Garner)
+*) Fall back to DELETE FROM if TRUNCATE TABLE fails in tools_reset. (S. Garner)
+*) Explicitly set error_reporting level in hlstats.php. (S. Garner)
+*) Fix incorrect cstrike action codes for Awards in hlstats.sql. (S. Garner)
+*) Add awards for valve and tfc to hlstats.sql. (S. Garner)
+*) Added check for register_globals==On to hlstats.php. (S. Garner)
+*) Fix help.inc checking for HAVE_HLLOG == "yes" instead of == 1. (S. Garner)
+*) Fix incorrect valve weapon names in hlstats.sql. (S. Garner)
+*) Fix incorrect valve weapon image file names, and changed to always look for
+   all-lowercase weapon image files. (S. Garner)
+
+
+1.00 (released 2001-03-20)
+*) New header design and slightly lighter default colour scheme. (S. Garner)
+*) Fixed hlstats-awards.pl not awarding any action awards. (Vitriol, S. Garner)
+*) Added weapon images for elite, ump45, fiveseven and sg550 for Counter-Strike.
+   Added weapon images for Half-Life Deathmatch. Added these weapons to the
+   default Weapons table. (S. Garner)
+*) Added viewer option to players.inc to limit rankings to only players with
+   greater than or equal to an arbitrary number of kills. (S. Garner)
+*) Added utility to tools_optimize to upgrade all tables to MyISAM. (S. Garner)
+*) Added support for tracking players by name (in addition to by WON ID or by IP
+   Address). Enabled with Mode=NameTrack. (S. Garner)
+*) Fixed connections not being logged. (S. Garner)
+*) Fixed player-aliases incrementing Numuses and Lastuse for every event. Now
+   correctly only increments when name changes. (S. Garner)
+
+
+1.00-beta (released 2001-03-18)
+*) Updated to use new HL Standard Log Format (http://www.hlstats.org/logs/).
+   Rewrote much of hlstats.pl to take advantage of features of the new log
+   format. (S. Garner)
+*) New directive: MinPlayers. Player events will not be recorded if the number
+   of players on the server is less than MinPlayers (default 2). (S. Garner)
+*) Increased maxlength of weapon code in Weapons table to 32 chars. (S. Garner)
+*) Added images for TFC weapons. (Neo, S. Garner)
+*) New admin tool: Edit Player Or Clan Details. Allows for editing of a player
+   or clan's profile information. (S. Garner)
+*) Can now jump to a player's details page by passing a uniqueid (which can be a
+   WON ID or an IP Address, depending on MODE) and game code in the URL instead
+   of playerid, e.g.: hlstats.php?mode=playerinfo&uniqueid=123456&game=tfc
+   Useful for server status utilities wanting to link directly to a player's
+   details page. (S. Garner)
+*) Clan tag patterns can now be customised; new admin section and new ClanTags
+   database table. (S. Garner)
+*) Multipage navigation in Table class (hlstats.php) now only shows maximum of
+   20 pages, plus "First page" and "Last page" links. (S. Garner)
+*) New script: hlstats-resolve.pl. Goes through Events_Connects resolving any
+   unresolved IP addresses, and re-grouping hostnames.
+*) Moved some common functions to HLstats.plib.
+*) New admin tool: Host Statistics. Shows the most popular ISPs (hostnames) for
+   players on your servers. (S. Garner)
+*) Hostnames are grouped by the first 2 or 3 parts of the address (i.e.
+   'max1.xyz.someisp.net' becomes 'someisp.net', and 'max1.xyz.someisp.net.nz'
+   becomes 'someisp.net.nz'), but can also be grouped into user-defined group
+   names defined with Admin: Host Groups (hlstats_HostGroups). (S. Garner)
+*) Hostnames can now be optionally logged when players connect. A DNS reverse-
+   lookup is performed on the player's IP. This can be enabled or disabled with
+   the DNSResolveIP configuration directive or --dns-resolveip. The DNS timeout
+   delay can also be set with DNSTimeout or --dns-timeout. (S. Garner)
+*) New admin tool: Reset Statistics. Deletes all players, clans and events from
+   relevant tables using TRUNCATE TABLE. (S. Garner)
+*) New admin tool: Optimize Database. Runs OPTIMIZE TABLE and ANALYZE TABLE
+   MySQL queries for all tables. Can increase database performance with large
+   tables, if run regularly. (S. Garner)
+*) New admin tool: Admin-Event History (interface for new Events_Admin and
+   Events_Rcon tables). (S. Garner)
+*) New "Tools" section in Admin interface. (S. Garner)
+*) Log speed cheats and Admin Mod messages to hlstats_Events_Admin. (S. Garner)
+*) Log Rcon commands to hlstats_Events_Rcon. (S. Garner)
+*) Default behaviour is now to use MySQL server time (NOW()), instead of
+   hlstats.pl time (time()) and game server time (timestamp on the log data).
+   Only the MySQL server needs an accurate clock now. Added a UseTimestamp
+   directive to alternatively still use the timestamp from log data. (S. Garner)
+*) hlstats.pl can now accept log data on standard input. (S. Garner)
+*) hlstats.pl and hlstats-awards.pl now use a common configuration file and
+   accept various arguments on the command line. (S. Garner)
+*) Add map image to map detail stats. New Option: map_dlurl. (S. Garner)
+*) Add map detail stats (mapinfo.inc). (R. Yacketta, S. Garner)
+*) Add weapon detail stats (weaponinfo.inc). (R. Yacketta, S. Garner)
+*) Fix incorrect urlencode()ing of homepage URLs in playerinfo.inc and in
+   claninfo.inc. (S. Garner)
+*) Fix table->draw() incorrectly assuming imgdir is in DOCUMENT_ROOT. Now
+   determines absolute path to imgdir from SCRIPT_NAME. (S. Garner)
+*) Add DB_PCONNECT configuration define to hlstats.php, for optional persistent
+   database connections. (S. Garner)
+*) Add EXPERIMENTAL $g_mode = "LAN" for tracking players by IP address. The
+   structure of some database tables had to be changed to accommodate this; an
+   SQL file is provided for upgrading existing databases. (S. Garner)
+*) Add $g_deletedays and DELETEDAYS configuration settings. (S. Garner)
+*) Reorder regular expression matches in main loop in hlstats.pl; possible
+   performance improvement. (S. Garner)
+*) Fix some output bugs in hlstats.pl, and tidy up some messages. (S. Garner)
+
+
+0.99-beta (released 2001-01-02)
+*) First public release. (S. Garner)

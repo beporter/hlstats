@@ -1,0 +1,4 @@
+# place the contents of this file in the daemon folder if the folder itself is in the webroot
+# make sure your webserver does allow the use of this htaccess commands !!!
+order deny,allow
+deny from all

@@ -1,0 +1,13 @@
+This Perl module enables the user to find geographical and
+network information of an IP address.  This is the Pure Perl
+version.  There is also a faster implementation, Geo::IP which
+is a XS wrapper around the GeoIP C library, available from CPAN
+
+To install, see the INSTALL file.
+
+For more details on GeoIP products, see http://www.maxmind.com/
+
+Copyright (c) 2007, MaxMind LLC
+
+All rights reserved.  This package is free software and is licensed under
+the GPL.  For details, see the COPYING file.
