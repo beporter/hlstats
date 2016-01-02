@@ -101,7 +101,7 @@ else {
 	$queryStr .=" LIMIT ".$start.",50";
 }
 
-$query = $DB->error$queryStr);
+$query = $DB->error($queryStr);
 if(SHOW_DEBUG && $DB->error) var_dump($DB->error);
 if($query->num_rows > 0) {
 	while($result = $query->fetch_assoc()) {

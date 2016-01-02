@@ -21,7 +21,7 @@
 # +
 # + Johannes 'Banana' Keßler
 # + http://hlstats.sourceforge.net
-# + 2007 - 2011
+# + 2007 - 2013
 # +
 #
 #
@@ -48,7 +48,7 @@ my $opt_configfile_name = "hlstats.conf.ini";
 use strict;
 no strict "vars";
 
-BEGIN { 
+BEGIN {
     binmode STDOUT, ':encoding(UTF-8)';
     binmode STDERR, ':encoding(UTF-8)';
 }
@@ -176,7 +176,7 @@ GetOptions(
 	"db-username=s"		=> \$db_user,
 	"quiet|q"			=> \$opt_quiet,
 	"debug|d+"			=> \$g_debug,
-	
+
 	"mode|m=s"			=> \$g__mode,
 	"ip|i=s"			=> \$s_ip,
 	"port|p=i"			=> \$s_port,
@@ -186,7 +186,7 @@ GetOptions(
 	"server-port=i"		=> \$g_server_port,
 	"timestamp!"		=> \$g_timestamp,
 	"t"					=> \$g_timestamp
-	
+
 ) or die($usage);
 
 if ($opt_help) {
@@ -369,8 +369,8 @@ while ($loop = &getLine()) {
 	my ($sec,$min,$hour,$mday,$mon,$year) = localtime(time());
 	$ev_timestamp = sprintf("%04d-%02d-%02d %02d:%02d:%02d",
 		$year+1900, $mon+1, $mday, $hour, $min, $sec);
-	$ev_datetime  = "NOW()";
-	$ev_unixtime  = time();
+	our $ev_datetime  = "NOW()";
+	our $ev_unixtime  = time();
 
 	# Get the server info, if we know the server, otherwise ignore the data
 	if (!$g_servers{$s_addr}) {
@@ -396,7 +396,7 @@ while ($loop = &getLine()) {
 			$g_servers{$s_addr}->{map} = $ret->{map};
 		}
 	}
-	
+
 	print "### players at server ".$g_servers{$s_addr}->{numplayers}."\n" if ($g_debug > 2);
 
 	# Get the datestamp (or complain)
@@ -475,10 +475,10 @@ while ($loop = &getLine()) {
 		}
 		elsif (like($ev_verb, "attacked")) {
 			$ev_type = 9;
-			
+
 			my $playerinfo = &getPlayerInfo($ev_player);
 			my $victiminfo = &getPlayerInfo($ev_obj_a);
-			
+
 			if ($playerinfo && $victiminfo) {
 				#$ev_status = "(IGNORED) $s_output";
 				$ev_status = &doEvent_PlayerAttackedPlayer(
@@ -488,7 +488,7 @@ while ($loop = &getLine()) {
 					%ev_properties
 				);
 			}
-			
+
 		}
 		elsif (like($ev_verb, "triggered"))
 		{
@@ -517,6 +517,26 @@ while ($loop = &getLine()) {
 				$ev_status = &doEvent_PlayerAction(
 					$playerinfo->{"userid"},
 					$ev_obj_a
+				);
+			}
+		}
+		elsif ($ev_verb =~ /^\[.*\] killed$/) {
+
+			#
+			# this format appeared in an update from csgo
+			# thx to sunny
+			#
+			my $killerinfo = &getPlayerInfo($ev_player);
+			my $victiminfo = &getPlayerInfo($ev_obj_a);
+
+			$ev_type = 8;
+
+			if ($killerinfo && $victiminfo) {
+
+				$ev_status = &doEvent_Frag(
+					$killerinfo->{"userid"},
+					$victiminfo->{"userid"},
+					$ev_obj_b
 				);
 			}
 		}
@@ -847,7 +867,7 @@ while ($loop = &getLine()) {
 		$ev_properties = $3;
 
 		%ev_properties = &getProperties($ev_properties);
-		
+
 		if (like($ev_verb, "entered the game"))
 		{
 			my $playerinfo = &getPlayerInfo($ev_player);
@@ -893,13 +913,18 @@ while ($loop = &getLine()) {
 			if ($playerinfo) {
 				$ev_type = 1;
 
-				if ( ($g_preconnect->{$playerinfo->{"userid"}}->{"name"} eq $playerinfo->{"name"})
-					&& ($g_preconnect->{$playerinfo->{"userid"}}->{"server"} eq $s_addr) )
-				{
-					$ev_status = &doEvent_Connect(
-						$playerinfo->{"userid"},
-						$g_preconnect->{$playerinfo->{"userid"}}->{"ipaddress"}
-					);
+				if($g_preconnect->{$playerinfo->{"userid"}}) {
+				#	if ( ($g_preconnect->{$playerinfo->{"userid"}}->{"name"} eq $playerinfo->{"name"})
+				#		&& ($g_preconnect->{$playerinfo->{"userid"}}->{"server"} eq $s_addr) )
+				#	{
+						$ev_status = &doEvent_Connect(
+							$playerinfo->{"userid"},
+							$g_preconnect->{$playerinfo->{"userid"}}->{"ipaddress"}
+						);
+				#	}
+				}
+				else {
+					 $ev_status = "No preconnect information...";
 				}
 			}
 		}
@@ -919,6 +944,25 @@ while ($loop = &getLine()) {
 				);
 			}
 		}
+		elsif($ev_verb =~ /^switched from team <([^<>]+)> to <([^<>]+)>$/) {
+
+			#
+			# csgo changed the log messages with an update...
+			# thx to sonny...
+			#
+
+			my $playerinfo = &getPlayerInfo($ev_player);
+
+			if ($playerinfo) {
+				$ev_type = 5;
+
+				$ev_status = &doEvent_TeamSelection(
+					$playerinfo->{"userid"},
+					$2
+				);
+			}
+		}
+
 	}
 	elsif ($s_output =~ /^Team "([^"]+)" ([^"\(]+) "([^"]+)" [^"\(]+ "([^"]+)" [^"\(]+(.*)$/)
 	{
@@ -1225,7 +1269,6 @@ while ($loop = &getLine()) {
 		}
 	}
 
-
 	if ($ev_type) {
 
 		if ($g_debug > 2) {
@@ -1275,9 +1318,8 @@ EOT
 
 			my($server) = split(/\//, $pl);
 			$g_servers{$server}->{numplayers}-- if ($player->get("uniqueid") !~ /PENDING/);
-			&printNotice("NumPlayers ($server): $g_servers{$server}->{numplayers} (Auto-Disconnect)");
 
-			$player->updateDB();
+			#$player->updateDB();
 			delete($g_players{$pl});
 		}
 	}

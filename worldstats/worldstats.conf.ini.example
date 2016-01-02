@@ -1,0 +1,19 @@
+##
+## Database Settings
+##
+[Database]
+# Database server "address" or "address:port". Address can be an IP or a hostname.
+DBHost = localhost
+
+# Name of the database to use.
+DBName = hlstats
+
+# User to connect to the database as.
+DBUsername = user
+
+# Password for the database user.
+DBPassword = test
+
+# Table prefix. Default is hlstats_ws
+DBPrefix = hlstats_ws
+

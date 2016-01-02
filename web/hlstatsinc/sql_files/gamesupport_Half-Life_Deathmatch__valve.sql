@@ -20,8 +20,8 @@ INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','9mmAR','MP5'
 INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','9mmhandgun','Glock','kills with 9mmhandgun',NULL,NULL);
 INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','bolt','Crossbow Sniper','kills with bolt',NULL,NULL);
 INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','crowbar','Crowbar Maniac','murders with crowbar',NULL,NULL);
-INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','gluon gun','Gauss King','kills with gluon gun',NULL,NULL);
-INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','tau_cannon','Egon','kills with tau_cannon',NULL,NULL);
+INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','gluon_gun','Egon','kills with gluon gun',NULL,NULL);
+INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','tau_cannon','Gaus King','kills with tau_cannon',NULL,NULL);
 INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','grenade','Grenadier','kills with grenade',NULL,NULL);
 INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','hornet','Hornet Master','kills with hornet',NULL,NULL);
 INSERT IGNORE INTO `++DB_PREFIX++_Awards` VALUES (NULL,'W','valve','rpg_rocket','Rocketeer','kills with rocket',NULL,NULL);
@@ -42,7 +42,7 @@ INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'valve','bolt','Crossbow
 INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'valve','crossbow','Crossbow',1.40);
 INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'valve','crowbar','Crowbar',1.90);
 INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'valve','tau_cannon','Gauss Gun',1.00);
-INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'valve','gluon gun','Gluon Gun',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'valve','gluon_gun','Gluon Gun',1.00);
 INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'valve','grenade','Grenade',1.00);
 INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'valve','hornet','Hornet',1.30);
 INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'valve','rpg_rocket','Rocket Propelled Grenade',1.00);

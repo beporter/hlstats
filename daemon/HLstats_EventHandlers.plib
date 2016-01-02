@@ -102,7 +102,7 @@ sub doEvent_EnterGame
 		# since the entered game should come after connected and before anything else
 		# otherweise we will lose this player information....
 		if(($g_preconnect->{$playerId}) && ($g_preconnect->{$playerId}->{"server"} eq $s_addr)) {
-		
+
 			my $pre_playerinfo = &getPlayerInfo($ev_player, "NOSTEAM_".$g_preconnect->{$playerId}->{"ipaddress"});
 
 			&recordEvent("Entries", 0,$playerId);
@@ -310,7 +310,8 @@ sub doEvent_Frag {
 	my $victim = $g_players{"$s_addr/$victimId"};
 	my $killerstr = &getPlayerInfoString($killer, $killerId);
 	my $victimstr = &getPlayerInfoString($victim, $victimId);
-	my $weapon = &checkEvent($weaponCode,"Frags");
+	#my $weapon = &checkEvent($weaponCode,"Frags");
+	my $weapon = $weaponCode;
 
 	my $killerdiff;
 	my $victimdiff;
@@ -388,13 +389,13 @@ sub doEvent_Frag {
 #
 sub doEvent_PlayerAttackedPlayer {
 	my ($playerId, $victimId, $weaponCode, %ev_properties) = @_;
-	
+
 	my $desc = "";
 	my $attacker = $g_players{"$s_addr/$playerId"};
 	my $victim = $g_players{"$s_addr/$victimId"};
 	my $attackerstr = &getPlayerInfoString($attacker, $playerId);
 	my $victimstr = &getPlayerInfoString($victim, $victimId);
-		
+
 	if($attacker && $victim) {
 		&recordEvent(
 			"PlayerAttackedPlayer", 0,
@@ -679,6 +680,9 @@ sub doEvent_WorldAction
 		$desc = "(IGNORED) NOTMINPLAYERS: ";
 	}
 	else {
+
+		$g_servers{$s_addr}->{map} = '' unless defined;
+
 		my $query = "
 			SELECT
 				id,
@@ -698,6 +702,7 @@ sub doEvent_WorldAction
 				codelength DESC
 			LIMIT 1
 		";
+
 		my $result = &doQuery($query);
 
 		if ($result->rows == 1)
@@ -956,7 +961,7 @@ sub doEvent_ChangeMap {
 	my ($type, $newmap) = @_;
 
 	$g_servers{$s_addr}->{map} = $newmap;
-	&printNotice("Current map for server \"$s_addr\" is now \"" .
+	&::printNotice("Current map for server \"$s_addr\" is now \"" .
 		$g_servers{$s_addr}->{map} . "\"");
 
 	if ($type eq "loading") {
@@ -1003,7 +1008,7 @@ sub doEvent_Rcon {
 	if($::g_debug > 1) {
 		return $desc . "$type Rcon from \"$ipAddr\", pw \"$password\": \"$command\"";
 	}
-	else {	
+	else {
 		return $desc . "$type Rcon from \"$ipAddr\", \"$command\"";
 	}
 }
@@ -1153,7 +1158,7 @@ sub doEvent_Statsme_Time {
 		$desc = "(IGNORED) NOPLAYERINFO: ";
 		$playerstr = "";
 	}
-	
+
 	return $desc . $playerstr . " STATSME connection time \"$time\"";
 }
 

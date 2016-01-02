@@ -97,6 +97,9 @@ INSERT IGNORE INTO `++DB_PREFIX++_Actions` VALUES(NULL,'csgo', 'domination', 5, 
 INSERT IGNORE INTO `++DB_PREFIX++_Actions` VALUES(NULL,'csgo', 'revenge', 3, 0, '', 'Revenge', '0', '1', '0', '0');
 INSERT IGNORE INTO `++DB_PREFIX++_Actions` VALUES(NULL,'csgo', 'kill_assist', 2, 0, '', 'Kill Assist', '0', '1', '0', '0');
 INSERT IGNORE INTO `++DB_PREFIX++_Actions` VALUES(NULL,'csgo', 'mvp', 10, 0, '', 'Most valuable player', '1', '0', '0', '0');
+INSERT IGNORE INTO `++DB_PREFIX++_Actions` VALUES(NULL,'csgo', 'SFUI_Notice_Terrorists_Win', 0, 2, 'TERRORIST', 'All Counter-Terrorists eliminated', '0', '0', '1', '0');
+INSERT IGNORE INTO `++DB_PREFIX++_Actions` VALUES(NULL,'csgo', 'SFUI_Notice_CTs_Win', 0, 2, 'CT', 'All Terrorists eliminated', '0', '0', '1', '0');
+INSERT IGNORE INTO `++DB_PREFIX++_Actions` VALUES(NULL,'csgo', 'SFUI_Notice_Target_Saved', 0, 2, 'CT', 'Counter-Terrorists saved the target', '0', '0', '1', '0');
 
 #
 # Teams

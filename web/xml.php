@@ -40,7 +40,7 @@ date_default_timezone_set('Europe/Berlin');
 
 // if you have problems with your installation
 // activate this paramter by setting it to true
-define('SHOW_DEBUG',false);
+define('SHOW_DEBUG',true);
 
 // do not display errors in live version
 if(SHOW_DEBUG === true) {
@@ -142,7 +142,7 @@ if($g_options['allowXML'] == "1") {
 			if(!empty($gameCode) && validateInput($gameCode,'nospace') && $g_options['MODE'] === "Normal") {
 				$query = $DB->query("SELECT p.playerId, p.lastName, p.skill,
 									p.oldSkill, p.kills, p.deaths,
-									pu.uniqueId, p.game,
+									pu.uniqueId, p.game, p.clan,
 									ec.country, ec.countryCode, MAX(ec.eventTime) AS lastConnect
 			    		FROM `".DB_PREFIX."_Players` AS p
 						INNER JOIN `".DB_PREFIX."_PlayerUniqueIds` AS pu
@@ -171,6 +171,7 @@ if($g_options['allowXML'] == "1") {
 					$xmlBody .= "<countryCode>".$playerData['countryCode']."</countryCode>";
 					$xmlBody .= "<lastConnect>".$playerData['lastConnect']."</lastConnect>";
 					$xmlBody .= "<game>".$playerData['game']."</game>";
+					$xmlBody .= "<clan>".$playerData['clan']."</clan>";
 					$xmlBody .= "</player>";
 				}
 				$xmlBody .= "</players>";

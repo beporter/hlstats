@@ -40,7 +40,7 @@ date_default_timezone_set('Europe/Berlin');
 
 // if you have problems with your installation
 // activate this paramter by setting it to true
-define('SHOW_DEBUG',false);
+define('SHOW_DEBUG',true);
 
 // do not display errors in live version
 if(SHOW_DEBUG === true) {

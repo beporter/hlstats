@@ -48,7 +48,7 @@ date_default_timezone_set('Europe/Berlin');
  * if you have problems with your installation
  * activate this parameter by setting it to true
  */
-define('SHOW_DEBUG',false);
+define('SHOW_DEBUG',true);
 
 // do not display errors in live version
 if(SHOW_DEBUG === true) {
@@ -223,7 +223,9 @@ else {
  * include the requested page
  * the $mode is checked above
  */
-include("hlstatsinc/".$mode.".inc.php");
+if(!empty($mode)) {
+	include("hlstatsinc/".$mode.".inc.php");
+}
 
 /**
  * include the global footer

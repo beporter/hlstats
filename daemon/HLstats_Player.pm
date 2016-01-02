@@ -107,7 +107,7 @@ sub set {
 
 		if ($self->get($key) eq $value) {
 			if ($::g_debug > 2) {
-				&printNotice("Hlstats_Player->set ignored: Value of \"$key\" is already \"$value\"");
+				&::printNotice("Hlstats_Player->set ignored: Value of \"$key\" is already \"$value\"");
 			}
 			return 0;
 		}
@@ -136,7 +136,7 @@ sub set {
 sub increment {
 	my ($self, $key, $amount, $no_updatetime) = @_;
 
-	
+
 	if(defined($amount)) {
 		$amount = int($amount);
 		$amount = 1 if $amount == 0;
@@ -379,7 +379,7 @@ sub updateDB {
 	}
 
 	# reset player stat properties
-	# we do not store the complete values here. Onl the differenc between the updates.
+	# we do not store the complete values here. Only the difference between the updates.
 	$self->set("kills", 0);
 	$self->set("deaths", 0);
 	$self->set("suicides", 0);

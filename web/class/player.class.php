@@ -1348,16 +1348,18 @@ class Player {
 			$url = "http://steamcommunity.com/profiles/".$sPID."/stats/".$this->_statsGames[$this->_game]."/?xml=1";
 			$data = getDataFromURL($url);
 			if(!empty($data)) {
-				$xml = simplexml_load_string($data);
-				foreach($xml->achievements->achievement as $achievement) {
-					$att = $achievement->attributes();
-					$closed = (string)$att['closed'];
-					if($closed === "1") { # closed is achieved
-						$this->_playerData['steamAchievements'][] = array(
-							'name' => (string)$achievement->name,
-							'desc' => (string)$achievement->description,
-							'picture' => (string)$achievement->iconClosed
-						);
+				$xml = @simplexml_load_string($data);
+				if($xml !== false) {
+					foreach($xml->achievements->achievement as $achievement) {
+						$att = $achievement->attributes();
+						$closed = (string)$att['closed'];
+						if($closed === "1") { # closed is achieved
+							$this->_playerData['steamAchievements'][] = array(
+								'name' => (string)$achievement->name,
+								'desc' => (string)$achievement->description,
+								'picture' => (string)$achievement->iconClosed
+							);
+						}
 					}
 				}
 			}

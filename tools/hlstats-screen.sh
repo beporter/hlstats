@@ -35,7 +35,8 @@
 NAME=hlstats_daemon
 
 # path to the hlstats files
-DIR=/path/to/HLStats/daemon
+#DIR=/path/to/HLStats/daemon
+DIR=/home/banana/code/HLStats/daemon
 
 # exutable file
 DAEMON=hlstats.pl

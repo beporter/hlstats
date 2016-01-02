@@ -18,7 +18,7 @@
 # +
 # + Johannes 'Banana' Keßler
 # + http://hlstats.sourceforge.net
-# + 2007 - 2012
+# + 2007 - 2013
 # +
 #
 # This program is free software is licensed under the
@@ -74,11 +74,15 @@ sub doQuery
 					'ShowErrorStatement' => 1})
 			or die("Unable to connect to MySQL server");
 
-		my $rs = $db_conn->prepare("SET character set utf8");
-		$rs->execute;
+		my $rs = $db_conn->prepare("SET character set utf8")
+			or die("Unable to prepare query: SET character set utf8");
+		$rs->execute
+			or die("Unable to execute query: SET character set utf8");
 
-		$rs = $db_conn->prepare("SET NAMES utf8");
-		$rs->execute;
+		$rs = $db_conn->prepare("SET NAMES utf8")
+			or die("Unable to prepare query: SET NAMES utf8");
+		$rs->execute
+			or die("Unable to execute query: SET NAMES utf8");
 	}
 
 
@@ -312,8 +316,7 @@ sub printEvent {
 sub printNotice {
 	my ($notice) = @_;
 
-	if ($g_debug > 1)
-	{
+	if ($g_debug > 1) {
 		print ">> $notice\n";
 	}
 }
@@ -346,7 +349,7 @@ sub recordEvent {
 	}
 
 	$query .= " ) VALUES (
-			$ev_datetime,
+			NOW(),
 			'$g_servers{$s_addr}->{id}',
 			'$g_servers{$s_addr}->{map}'";
 
@@ -375,11 +378,14 @@ sub checkEvent {
 
 	my %switch = ( "Frags" => "Weapons");
 	if($switch{$event}) {
-		my $query = &doQuery("SELECT code
+		my $query = "SELECT code
 					FROM `${db_prefix}_$switch{$event}`
-					WHERE code = '$eventCode'");
-		my $wc = $query->fetchrow_array();
-		$query->finish;
+					WHERE code = '".$eventCode."'
+					AND game = '".$g_servers{$s_addr}->{game}."'";
+		my $result = &doQuery($query);
+		my ($wc) = $result->fetchrow_array();
+		$result->finish;
+
 		if($wc) {
 			return $wc;
 		}
@@ -703,7 +709,7 @@ sub getServer
 		$result->finish;
 
 		# get the current map to avoid unknown maps
-		my $currentMap='';
+		my $currentMap = 'Unknown';
 		my $q = HLstats_ServerQueries->new(encoding => 'utf-8',
 											timeout => 1,
 											'addr' => $address,
@@ -770,6 +776,7 @@ sub getPlayerInfoString
 # array getPlayerInfo (string player, string forced_uniqueid)
 #
 # Get a player's name, uid, wonid and team from "Name<uid><wonid><team>".
+# or Name<uid><wonid> since the team is not available yet
 #
 sub getPlayerInfo
 {
@@ -802,6 +809,16 @@ sub getPlayerInfo
 		$userid   = $2;
 		$uniqueid = $3;
 		$team     = $4;
+	}
+	elsif ($player =~ /^(.+)<(\d+)><([^<>]+)>$/) {
+		#
+		# started with an update to csgo...
+		# Name<uid><wonid> since the team is not decided yet..
+		#
+		$name     = $1;
+		$userid   = $2;
+		$uniqueid = $3;
+		$team     = "Unassigned";
 	}
 	else {
 		return 0;
@@ -896,8 +913,7 @@ sub getPlayerInfo
 			$g_servers{$s_addr}->{numplayers}++ if (!$haveplayer);
 			&printNotice("NumPlayers ($s_addr): $g_servers{$s_addr}->{numplayers} (LAN Connect)");
 		}
-		else
-		{
+		else {
 			&printNotice("No player object available for player \"$name\" <U:$userid>");
 		}
 	}

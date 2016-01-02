@@ -195,5 +195,23 @@ INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','holy_mackerel','T
 INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','frontier_justice','Frontier Justice',1.00);
 INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','degreaser','The Degreaser',1.00);
 INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','rocketlauncher_directhit','Direct Hit',1.00);
-
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','bazaar_bargain','Bazaar Bargain',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','blackbox','The Black Box',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','brass_beast','The Brass Beast',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','cow_mangler','Cow Mangler 5000',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','crusaders_crossbow',"The Crusader\'s Crossbow",1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','dumpster_device','Beggar\'s Bazooka',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','family_business','Family Business',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','iron_curtain','The Iron Curtain',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','liberty_launcher','Liberty Launcher',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','loch_n_load','The Loch-n-Load',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','pep_brawlerblaster','Baby Face\'s Blaster',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','pro_rifle','The Hitman\'s Heatmaker',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','pro_smg','The Cleaner\'s Carbine',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','rainblower','The Rainblower',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','short_stop','The Shortstop',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','sticky_resistance','Scottish Resistance',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','sydney_sleeper','The Sydney Sleeper',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','the_winger','Winger',1.00);
+INSERT IGNORE INTO `++DB_PREFIX++_Weapons` VALUES (NULL,'tf2','unique_pickaxe_escape','The Escape Plan',1.00);
 # end of file

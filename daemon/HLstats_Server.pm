@@ -38,6 +38,8 @@ sub new {
 
 	bless($self, $class_name);
 
+	$currentMap = 'Unknown' unless defined;
+
 	$self->{id}      = $serverId;
 	$self->{address} = $address;
 	$self->{port}    = $port;
